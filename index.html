@@ -437,6 +437,28 @@
       font-weight: 730;
     }
 
+    .case-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      min-height: 42px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      box-shadow: 0 8px 20px rgba(47, 105, 217, 0.18);
+      font-size: 0.88rem;
+      font-weight: 760;
+      text-decoration: none;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .case-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 26px rgba(47, 105, 217, 0.24);
+    }
+
     .tools-section {
       padding: clamp(56px, 7vw, 86px) 0 clamp(72px, 9vw, 110px);
       border-top: 1px solid var(--line);
@@ -666,14 +688,15 @@
           <details class="case-card">
             <summary>
               <span class="case-number">07</span>
-              <span><span class="case-title">Динамический конструктор PRELIMINARY ГПР</span><span class="case-brief">Разработка Excel-инструмента предварительного календарного планирования строительства с динамическими объектами, зависимостями, ресурсами и диаграммой Ганта.</span><span class="status progress">Рабочий прототип / в развитии</span></span>
+              <span><span class="case-title">PRELIMINARY ГПР Calculator</span><span class="case-brief">Динамический веб-конструктор предварительного графика производства работ девелоперского проекта с настраиваемой структурой работ, нормативами длительности и зависимостями.</span><span class="status">Реализован · v1.2.2</span></span>
               <span class="chevron" aria-hidden="true"></span>
             </summary>
             <div class="case-body"><div class="case-body-inner"><div class="case-details">
-              <div class="detail"><h3>Задача</h3><p>Создать простой, но практически применимый инструмент предварительного календарного планирования строительства, который в дальнейшем может стать временной основой финансовой модели проекта.</p></div>
-              <div class="detail"><h3>Решение с ИИ</h3><p>Разработан динамический Excel-конструктор с иерархией проекта, очередей, объектов и работ, календарными зависимостями, ресурсными ограничениями и диаграммой Ганта. Реализовано динамическое добавление объектов и проведено многоэтапное QA.</p></div>
-              <div class="detail"><h3>Результат</h3><p>Получен рабочий прототип PRELIMINARY ГПР, позволяющий формировать временной каркас проекта и тестировать влияние изменений исходных параметров на сроки строительства.</p></div>
-              <div class="detail"><h3>Статус</h3><p>Рабочий прототип / в развитии.</p></div>
+              <div class="detail"><h3>Задача</h3><p>Создать практически применимый инструмент PRELIMINARY-планирования, позволяющий на ранней стадии проекта быстро формировать укрупнённый ГПР, оценивать последовательность и сроки строительства и проводить сценарный анализ до разработки детального календарного графика.</p></div>
+              <div class="detail"><h3>Решение с ИИ</h3><p>Разработан автономный веб-калькулятор, в котором модель не является статичным шаблоном. Пользователь может добавлять очереди и объекты, пополнять иерархический справочник работ, корректировать экспертные нормативы длительности, изменять типы зависимостей FS / SS / FF / SF и временные лаги, а также задавать внешние ограничения. Расчёт формирует результаты, диаграмму Ганта, подробную таблицу ГПР и автоматические проверки PASS / WARNING / FAIL.</p></div>
+              <div class="detail"><h3>Результат</h3><p>Создан и опубликован PRELIMINARY ГПР Calculator v1.2.2: динамический веб-инструмент с возможностью сохранения исходных данных, экспорта CSV и печати результатов. Архитектура позволяет постепенно калибровать нормативы и зависимости на фактических данных конкретного девелопера и развивать корпоративную базу нормативов строительства.</p></div>
+              <div class="detail"><h3>Статус</h3><p>Реализован и опубликован. Версия v1.2.2 прошла функциональное и регрессионное тестирование.</p></div>
+              <a class="case-link" href="https://obogodelova-ui.github.io/PRELIMINARY-GPR-Calculator/" target="_blank" rel="noopener noreferrer">Открыть калькулятор →</a>
             </div></div></div>
           </details>
 
