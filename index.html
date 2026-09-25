@@ -1,822 +1,205 @@
 <!DOCTYPE html>
-
 <html lang="ru">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Portfolio | CFO</title>
-<meta content="Практическое портфолио применения искусственного интеллекта в финансах, управлении, автоматизации и развитии карьеры CFO." name="description"/>
+<meta name="description" content="Практическое портфолио применения искусственного интеллекта в финансах, аналитике, управлении и автоматизации работы CFO.">
+<meta property="og:title" content="AI Portfolio | CFO">
+<meta property="og:description" content="Практическое применение ИИ: исследования, финансовые модели, управленческие системы, автоматизация и AI-методология CFO.">
+<meta property="og:type" content="website">
 <style>
-    :root {
-      --bg: #f4f7fb;
-      --surface: #ffffff;
-      --surface-soft: #eef4fa;
-      --ink: #132033;
-      --muted: #5f6f82;
-      --line: #dbe4ee;
-      --navy: #0d2340;
-      --blue: #2f69d9;
-      --cyan: #14a9b8;
-      --violet: #7259d9;
-      --success: #0b7658;
-      --progress: #6d50b8;
-      --active: #1c5fa8;
-      --radius: 18px;
-      --shadow: 0 16px 38px rgba(19, 32, 51, 0.08);
-      --max-width: 1180px;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 88px;
-    }
-
-    body {
-      margin: 0;
-      min-width: 0;
-      overflow-x: hidden;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at 88% 8%, rgba(47, 105, 217, 0.09), transparent 25rem),
-        linear-gradient(180deg, #f8fafd 0%, var(--bg) 52%, #f8fafd 100%);
-      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
-      text-rendering: optimizeLegibility;
-    }
-
-    a { color: inherit; }
-
-    .skip-link {
-      position: fixed;
-      z-index: 100;
-      top: 12px;
-      left: 12px;
-      padding: 10px 14px;
-      border-radius: 10px;
-      color: #fff;
-      background: var(--navy);
-      transform: translateY(-160%);
-      transition: transform 180ms ease;
-    }
-
-    .skip-link:focus { transform: translateY(0); }
-
-    .container {
-      width: min(calc(100% - 40px), var(--max-width));
-      margin-inline: auto;
-    }
-
-    .site-header {
-      position: sticky;
-      z-index: 20;
-      top: 0;
-      border-bottom: 1px solid rgba(219, 228, 238, 0.88);
-      background: rgba(248, 250, 253, 0.88);
-      backdrop-filter: blur(14px);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 68px;
-      gap: 24px;
-    }
-
-    .brand {
-      flex: 0 0 auto;
-      color: var(--navy);
-      font-size: 0.86rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 8px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .nav-links a {
-      display: block;
-      padding: 9px 11px;
-      border-radius: 9px;
-      color: #46596e;
-      font-size: 0.84rem;
-      font-weight: 650;
-      line-height: 1.25;
-      text-decoration: none;
-      transition: color 180ms ease, background-color 180ms ease;
-    }
-
-    .nav-links a:hover { color: var(--navy); background: #e9f0f8; }
-
-    :focus-visible {
-      outline: 3px solid rgba(47, 105, 217, 0.38);
-      outline-offset: 3px;
-    }
-
-    .hero { padding: clamp(64px, 8vw, 104px) 0 clamp(54px, 7vw, 84px); }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.55fr) minmax(250px, 0.6fr);
-      align-items: end;
-      gap: clamp(36px, 6vw, 82px);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 0 16px;
-      color: var(--blue);
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      width: 30px;
-      height: 2px;
-      content: "";
-      background: linear-gradient(90deg, var(--blue), var(--cyan));
-    }
-
-    h1 {
-      max-width: 900px;
-      margin: 0;
-      background: linear-gradient(108deg, #0d2340 6%, #2f69d9 48%, #14a9b8 96%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      -webkit-text-fill-color: transparent;
-      font-size: clamp(3rem, 7.2vw, 6.75rem);
-      font-weight: 650;
-      letter-spacing: -0.065em;
-      line-height: 0.96;
-    }
-
-    .hero-subtitle {
-      max-width: 820px;
-      margin: 26px 0 0;
-      color: #33485e;
-      font-size: clamp(1.12rem, 2.1vw, 1.55rem);
-      line-height: 1.48;
-    }
-
-    .hero-positioning {
-      margin: 20px 0 0;
-      color: var(--muted);
-      font-size: 1rem;
-      font-weight: 620;
-    }
-
-    .hero-note {
-      position: relative;
-      padding: 24px 24px 22px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: var(--radius);
-      color: #fff;
-      background: linear-gradient(145deg, #102944, #183d62);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-note::after {
-      position: absolute;
-      right: -35px;
-      bottom: -55px;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      content: "";
-      background: rgba(20, 169, 184, 0.18);
-      filter: blur(2px);
-    }
-
-    .hero-note strong {
-      display: block;
-      font-size: 2.75rem;
-      letter-spacing: -0.05em;
-      line-height: 1;
-    }
-
-    .hero-note span {
-      display: block;
-      margin-top: 8px;
-      color: #c9d8e8;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    .hero-tags, .tools-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 28px;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      min-height: 34px;
-      padding: 6px 12px;
-      border: 1px solid #cfdbe8;
-      border-radius: 999px;
-      color: #334b64;
-      background: rgba(255, 255, 255, 0.75);
-      font-size: 0.82rem;
-      font-weight: 650;
-    }
-
-    main section { scroll-margin-top: 88px; }
-
-    .portfolio-section { padding: clamp(58px, 7vw, 88px) 0; }
-
-    .portfolio-section + .portfolio-section { border-top: 1px solid var(--line); }
-
-    .section-heading {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 28px;
-    }
-
-    .section-marker {
-      display: grid;
-      width: 42px;
-      height: 42px;
-      place-items: center;
-      border-radius: 12px;
-      color: #fff;
-      background: linear-gradient(135deg, var(--blue), var(--cyan));
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      box-shadow: 0 8px 22px rgba(47, 105, 217, 0.22);
-    }
-
-    .section-heading h2 {
-      margin: 0;
-      color: var(--navy);
-      font-size: clamp(1.75rem, 3.2vw, 2.55rem);
-      letter-spacing: -0.035em;
-      line-height: 1.15;
-    }
-
-    .section-heading p {
-      grid-column: 2;
-      margin: 3px 0 0;
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-
-    .case-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .case-card {
-      min-width: 0;
-      overflow: clip;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.92);
-      box-shadow: 0 8px 24px rgba(19, 32, 51, 0.045);
-      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
-    }
-
-    .case-card:hover {
-      border-color: #c6d5e6;
-      box-shadow: var(--shadow);
-      transform: translateY(-4px);
-    }
-
-    .case-card[open] {
-      border-color: #c5d6e8;
-      box-shadow: 0 18px 44px rgba(19, 32, 51, 0.09);
-    }
-
-    .case-card summary {
-      display: grid;
-      grid-template-columns: 46px minmax(0, 1fr) 28px;
-      gap: 16px;
-      align-items: start;
-      padding: 24px;
-      cursor: pointer;
-      list-style: none;
-    }
-
-    .case-card summary::-webkit-details-marker { display: none; }
-
-    .case-number {
-      display: grid;
-      width: 46px;
-      height: 46px;
-      place-items: center;
-      border: 1px solid #d8e5f1;
-      border-radius: 13px;
-      color: var(--blue);
-      background: #f1f6fb;
-      font-size: 0.82rem;
-      font-weight: 800;
-    }
-
-    .case-title {
-      display: block;
-      color: var(--navy);
-      font-size: 1.07rem;
-      font-weight: 760;
-      line-height: 1.35;
-    }
-
-    .case-brief {
-      display: block;
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 0.91rem;
-      line-height: 1.55;
-    }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      margin-top: 14px;
-      color: var(--success);
-      font-size: 0.77rem;
-      font-weight: 780;
-      letter-spacing: 0.035em;
-      text-transform: uppercase;
-    }
-
-    .status::before {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      content: "";
-      background: currentColor;
-      box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 14%, transparent);
-    }
-
-    .status.progress { color: var(--progress); }
-    .status.active { color: var(--active); }
-
-    .chevron {
-      display: grid;
-      width: 28px;
-      height: 28px;
-      place-items: center;
-      margin-top: 7px;
-      border-radius: 50%;
-      color: var(--blue);
-      background: #edf4fb;
-      transition: transform 220ms ease, background-color 220ms ease;
-    }
-
-    .chevron::before {
-      width: 7px;
-      height: 7px;
-      border-right: 2px solid currentColor;
-      border-bottom: 2px solid currentColor;
-      content: "";
-      transform: translateY(-2px) rotate(45deg);
-    }
-
-    .case-card[open] .chevron { transform: rotate(180deg); background: #dfeafb; }
-
-    .case-body {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 260ms ease;
-    }
-
-    .case-card[open] .case-body { grid-template-rows: 1fr; }
-
-    .case-body-inner { overflow: hidden; }
-
-    .case-details {
-      display: grid;
-      gap: 20px;
-      margin: 0 24px 24px 86px;
-      padding-top: 22px;
-      border-top: 1px solid var(--line);
-    }
-
-    .detail h3 {
-      margin: 0 0 5px;
-      color: #25415f;
-      font-size: 0.76rem;
-      font-weight: 820;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-    }
-
-    .detail p {
-      margin: 0;
-      color: #46596e;
-      font-size: 0.91rem;
-      line-height: 1.65;
-    }
-
-    .method-flow {
-      margin-top: 10px;
-      color: var(--navy);
-      font-weight: 730;
-    }
-
-    .case-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: fit-content;
-      min-height: 42px;
-      padding: 10px 16px;
-      border-radius: 10px;
-      color: #fff;
-      background: linear-gradient(135deg, var(--blue), var(--cyan));
-      box-shadow: 0 8px 20px rgba(47, 105, 217, 0.18);
-      font-size: 0.88rem;
-      font-weight: 760;
-      text-decoration: none;
-      transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-
-    .case-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 26px rgba(47, 105, 217, 0.24);
-    }
-
-    .tools-section {
-      padding: clamp(56px, 7vw, 86px) 0 clamp(72px, 9vw, 110px);
-      border-top: 1px solid var(--line);
-    }
-
-    .tools-panel {
-      padding: clamp(26px, 4vw, 42px);
-      border: 1px solid #cedbea;
-      border-radius: 24px;
-      background: linear-gradient(145deg, rgba(255,255,255,0.96), rgba(237,244,250,0.93));
-      box-shadow: var(--shadow);
-    }
-
-    .tools-panel h2 {
-      margin: 0;
-      color: var(--navy);
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      letter-spacing: -0.035em;
-    }
-
-    .tools-panel p { margin: 8px 0 0; color: var(--muted); }
-    .tools-grid { margin-top: 24px; }
-
-    footer {
-      padding: 24px 0 34px;
-      border-top: 1px solid var(--line);
-      color: #66778a;
-      font-size: 0.82rem;
-    }
-
-    @media (max-width: 880px) {
-      .site-header { position: static; }
-      .nav { align-items: flex-start; flex-direction: column; padding: 15px 0; gap: 10px; }
-      .nav-links { width: 100%; justify-content: flex-start; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
-      .nav-links li { flex: 0 0 auto; }
-      .nav-links a { background: #edf3f8; }
-      .hero-grid { grid-template-columns: 1fr; align-items: start; gap: 34px; }
-      .hero-note { max-width: 360px; }
-      .case-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 560px) {
-      .container { width: min(calc(100% - 28px), var(--max-width)); }
-      html { scroll-padding-top: 16px; }
-      .hero { padding-top: 52px; }
-      h1 { font-size: clamp(2.65rem, 15vw, 4.1rem); }
-      .hero-subtitle { font-size: 1.07rem; }
-      .hero-tags { gap: 8px; }
-      .tag { font-size: 0.78rem; }
-      .section-heading { grid-template-columns: 38px 1fr; gap: 12px; }
-      .section-marker { width: 38px; height: 38px; border-radius: 11px; }
-      .section-heading p { grid-column: 1 / -1; }
-      .case-card summary { grid-template-columns: 38px minmax(0, 1fr) 26px; gap: 12px; padding: 19px 16px; }
-      .case-number { width: 38px; height: 38px; border-radius: 11px; }
-      .case-title { font-size: 1rem; }
-      .case-brief { font-size: 0.88rem; }
-      .case-details { margin: 0 16px 21px; padding-top: 19px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-      }
-    }
-  
-/* OXA DESIGN SYSTEM V2 — EXECUTIVE SYSTEMS */
-:root{--bg:#F7F5F0;--surface:#FFFFFF;--surface-soft:#EFEAE2;--ink:#102133;--muted:#53616C;--line:#D8D2C9;--navy:#102133;--blue:#087F78;--cyan:#20A099;--violet:#AD7E46;--success:#087F78;--progress:#AD7E46;--active:#102133;--radius:8px;--shadow:0 18px 48px rgba(16,33,51,.075);--max-width:1240px}
-body{background:#F7F5F0;font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:18px;line-height:1.6;color:#29333D}
-.container{width:min(calc(100% - 64px),var(--max-width))}.site-header{border-bottom:1px solid rgba(16,33,51,.14);background:rgba(247,245,240,.94);backdrop-filter:blur(16px)}.nav{min-height:74px}.brand{color:#102133;letter-spacing:.12em}.nav-links a{color:#52606B;border-radius:6px}.nav-links a:hover{background:#EFEAE2;color:#087F78}
-.hero{position:relative;overflow:hidden;padding:clamp(78px,9vw,132px) 0 clamp(72px,8vw,112px);background:#0D1925;color:#F6F2EA}
-.hero::before{content:"";position:absolute;inset:0;opacity:.34;pointer-events:none;background-image:linear-gradient(rgba(32,160,153,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(32,160,153,.13) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(90deg,transparent,black 38%,black 100%)}
-.hero::after{content:"DATA  →  MODEL  →  INSIGHT  →  DECISION  →  RESULT";position:absolute;right:4vw;bottom:28px;color:rgba(246,242,234,.25);font-size:11px;letter-spacing:.18em;white-space:nowrap}
-.hero-grid{position:relative;z-index:1;grid-template-columns:minmax(0,1.5fr) minmax(290px,.56fr);gap:clamp(48px,7vw,92px)}.eyebrow{color:#20A099;letter-spacing:.15em}.eyebrow::before{height:1px;background:#20A099}
-h1{background:none;color:#F6F2EA!important;-webkit-text-fill-color:#F6F2EA!important;font-size:clamp(3.2rem,7.2vw,6.9rem);font-weight:640;letter-spacing:-.06em;line-height:.96}.hero-subtitle{color:#D7DEE2;max-width:860px;font-size:clamp(1.15rem,2vw,1.52rem)}.hero-positioning{color:#AEBBC2}.hero-note{border:1px solid rgba(32,160,153,.5);border-radius:8px;background:rgba(16,33,51,.46);box-shadow:none;backdrop-filter:blur(8px)}.hero-note::after{width:120px;height:120px;right:-60px;bottom:-60px;background:rgba(32,160,153,.13)}.hero-note strong{color:#20A099;font-size:3.25rem}.hero-note span{color:#C8D3D8}.hero-tags{gap:8px}.tag{border:1px solid rgba(246,242,234,.18);border-radius:5px;color:#E1E6E8;background:rgba(255,255,255,.025);font-size:.8rem}
-.portfolio-section{padding:clamp(68px,8vw,106px) 0}.portfolio-section + .portfolio-section{border-top:1px solid #D8D2C9}.section-heading{grid-template-columns:60px minmax(0,1fr);gap:20px;margin-bottom:34px}.section-marker{width:60px;height:42px;border-radius:4px;color:#F6F2EA;background:#102133;box-shadow:none;font-size:.78rem;position:relative}.section-marker::after{content:"";position:absolute;right:-9px;width:9px;height:1px;background:#087F78}.section-heading h2{color:#102133;font-weight:640;font-size:clamp(1.95rem,3.3vw,2.8rem)}.section-heading p{color:#66717A;max-width:860px}
-.case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.case-card{position:relative;border:1px solid #D8D2C9;border-radius:8px;background:#FBFAF7;box-shadow:none;transition:border-color 180ms ease,background-color 180ms ease}.case-card::before{content:"";position:absolute;left:-1px;top:18px;bottom:18px;width:2px;background:#087F78;opacity:.42}.case-card:hover,.case-card[open]{transform:none;box-shadow:0 16px 36px rgba(16,33,51,.065);border-color:#BFC7C5;background:#FFFFFF}.case-card[open]::before{opacity:1}.case-card summary{grid-template-columns:50px minmax(0,1fr) 28px;gap:16px;padding:26px}.case-number{width:50px;height:38px;border:0;border-radius:4px;color:#087F78;background:#EFEAE2;font-weight:820}.case-title{color:#102133;font-size:1.06rem;font-weight:730}.case-brief{color:#596671;font-size:.9rem}.status{color:#087F78}.status.progress{color:#AD7E46}.status.active{color:#102133}.chevron{border-radius:4px;color:#087F78;background:#EFEAE2}.case-card[open] .chevron{background:#E5E0D8}.case-details{margin:0 26px 26px 92px;padding-top:22px;border-top:1px solid #D8D2C9}.detail h3{color:#087F78;letter-spacing:.11em}.detail p{color:#46545F}.method-flow{position:relative;padding-left:18px;color:#102133}.method-flow::before{content:"";position:absolute;left:0;top:.4em;bottom:.3em;width:2px;background:#20A099}.case-link{border-radius:5px;background:#102133;box-shadow:none}.case-link:hover{transform:none;background:#087F78;box-shadow:none}
-#management{background:#F0ECE5}#methodology{background:#0D1925;color:#F6F2EA;border-top:0}#methodology .section-heading h2{color:#F6F2EA}#methodology .section-heading p{color:#B9C4CA}#methodology .section-marker{background:#20A099;color:#0D1925}#methodology .case-card{background:#122330;border-color:#30424E}#methodology .case-card::before{background:#20A099}#methodology .case-card:hover,#methodology .case-card[open]{background:#162A39;border-color:#3C5360}#methodology .case-title{color:#F6F2EA}#methodology .case-brief,#methodology .detail p{color:#C2CCD1}#methodology .case-number,#methodology .chevron{background:#1A3343;color:#20A099}#methodology .case-details{border-top-color:#30424E}#methodology .detail h3{color:#20A099}
-#methodology{position:relative;padding-top:clamp(84px,9vw,128px);padding-bottom:clamp(84px,9vw,128px);overflow:hidden}#methodology::before{content:"ОТ КЕЙСОВ — К СИСТЕМЕ";position:absolute;top:34px;left:max(24px,calc((100vw - 1180px)/2));font-size:11px;font-weight:700;letter-spacing:.22em;color:#20A099}#methodology::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(32,160,153,.06) 1px,transparent 1px),linear-gradient(rgba(32,160,153,.04) 1px,transparent 1px);background-size:72px 72px;pointer-events:none}#methodology .container{position:relative;z-index:1}#methodology .section-heading{max-width:880px;margin-bottom:34px}#methodology .section-heading h2{max-width:760px}#methodology .section-heading p{font-size:clamp(18px,2vw,22px);max-width:760px}.methodology-transition{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:28px;align-items:stretch;margin:0 0 34px;padding:30px 0;border-top:1px solid #30424E;border-bottom:1px solid #30424E}.methodology-transition .transition-thesis{font-size:clamp(22px,2.6vw,34px);line-height:1.22;font-weight:650;color:#F6F2EA;max-width:780px}.methodology-transition .transition-note{align-self:end;font-size:15px;line-height:1.55;color:#B9C4CA;max-width:390px}.methodology-pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:0 0 34px}.methodology-pipeline span{position:relative;padding:14px 12px;border:1px solid #30424E;background:#122330;color:#F6F2EA;font-size:12px;font-weight:700;letter-spacing:.08em;text-align:center;text-transform:uppercase}.methodology-pipeline span:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translate(50%,-50%);color:#20A099;background:#0D1925;padding:0 4px;z-index:2}#methodology .case-grid{margin-top:0}@media(max-width:780px){.methodology-transition{grid-template-columns:1fr}.methodology-transition .transition-note{align-self:start}.methodology-pipeline{grid-template-columns:1fr}.methodology-pipeline span:not(:last-child)::after{content:"↓";right:50%;top:auto;bottom:-14px;transform:translate(50%,50%)}#methodology::before{left:24px}}.tools-section{border-top:0;background:#F7F5F0}.tools-panel{position:relative;padding:clamp(34px,5vw,58px);border:1px solid #D0C9BF;border-radius:8px;background:#FFFFFF;box-shadow:none;overflow:hidden}.tools-panel::after{content:"DATA → MODEL → INSIGHT → DECISION → RESULT";position:absolute;right:28px;top:22px;color:#A7AAA8;font-size:10px;letter-spacing:.14em}.tools-panel h2{color:#102133;font-weight:640}.tools-panel p{color:#596671;max-width:800px}.tools-panel .tag{color:#29333D;background:#EFEAE2;border-color:#D8D2C9}
-footer{border-top:1px solid #D8D2C9;color:#66717A}.skip-link{background:#102133}.skip-link:focus{outline-color:#20A099}:focus-visible{outline-color:rgba(8,127,120,.45)}
-@media(max-width:880px){.nav-links a{background:#EFEAE2}.hero-grid{grid-template-columns:1fr}.hero-note{max-width:430px}.case-grid{grid-template-columns:1fr}.tools-panel::after{display:none}}
-@media(max-width:560px){body{font-size:16px}.container{width:min(calc(100% - 30px),var(--max-width))}.hero::after{display:none}.section-heading{grid-template-columns:48px 1fr}.section-marker{width:48px}.case-card summary{grid-template-columns:42px minmax(0,1fr) 26px;padding:20px 16px}.case-number{width:42px}.case-details{margin:0 16px 22px}.hero-note strong{font-size:2.75rem}}
-
+:root{
+  --bg:#07111f;--bg-deep:#050c16;--surface:#0d1a2b;--surface-2:#102238;--surface-soft:#142a43;
+  --text:#f5f7fb;--text-soft:#c5d0dc;--muted:#8999aa;--line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.18);
+  --cyan:#46d8d2;--blue:#5f8cff;--violet:#a78bfa;--green:#57d7a2;--amber:#f3bd62;--shadow:0 24px 70px rgba(0,0,0,.28);
+  --radius-xl:28px;--radius-lg:20px;--radius-md:14px;--radius-sm:10px;--container:1180px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;min-width:320px;overflow-x:hidden;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.65;color:var(--text);background:radial-gradient(circle at 82% 8%,rgba(95,140,255,.13),transparent 30rem),radial-gradient(circle at 16% 34%,rgba(70,216,210,.07),transparent 28rem),linear-gradient(180deg,var(--bg-deep) 0%,var(--bg) 46%,#081422 100%);text-rendering:optimizeLegibility}
+a{color:inherit}button,a,summary{-webkit-tap-highlight-color:transparent}:focus-visible{outline:3px solid rgba(70,216,210,.48);outline-offset:4px}.container{width:min(calc(100% - 40px),var(--container));margin-inline:auto}.skip-link{position:fixed;z-index:999;top:10px;left:10px;padding:9px 13px;border-radius:8px;color:#06111d;background:var(--cyan);font-weight:800;text-decoration:none;transform:translateY(-180%);transition:transform .18s ease}.skip-link:focus{transform:translateY(0)}
+.site-header{position:sticky;z-index:100;top:0;border-bottom:1px solid var(--line);background:rgba(5,12,22,.84);backdrop-filter:blur(18px)}.nav{display:flex;align-items:center;justify-content:space-between;min-height:72px;gap:28px}.brand{flex:0 0 auto;color:var(--text);font-size:.82rem;font-weight:800;letter-spacing:.14em;text-decoration:none;text-transform:uppercase}.brand span{color:var(--cyan)}.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:6px;margin:0;padding:0;list-style:none}.nav-links a{display:block;padding:9px 11px;border-radius:8px;color:var(--muted);font-size:.82rem;font-weight:650;text-decoration:none;transition:color .18s ease,background .18s ease}.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+.hero{position:relative;padding:clamp(76px,9vw,128px) 0 clamp(72px,9vw,118px);overflow:hidden}.hero::before{position:absolute;inset:0;content:"";pointer-events:none;opacity:.28;background-image:linear-gradient(rgba(70,216,210,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(70,216,210,.08) 1px,transparent 1px);background-size:74px 74px;mask-image:linear-gradient(90deg,transparent,black 30%,black 100%)}.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(270px,.55fr);align-items:end;gap:clamp(42px,7vw,94px)}.eyebrow{display:inline-flex;align-items:center;gap:10px;margin:0 0 20px;color:var(--cyan);font-size:.78rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase}.eyebrow::before{width:34px;height:1px;content:"";background:var(--cyan)}h1{max-width:920px;margin:0;background:linear-gradient(110deg,#fff 2%,#c8d7ff 38%,#5f8cff 65%,#46d8d2 100%);background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent;font-size:clamp(3rem,7.4vw,6.7rem);font-weight:680;letter-spacing:-.065em;line-height:.95}.hero-subtitle{max-width:820px;margin:28px 0 0;color:var(--text-soft);font-size:clamp(1.08rem,2vw,1.48rem);line-height:1.5}.hero-positioning{max-width:850px;margin:20px 0 0;color:var(--muted);font-size:.98rem}.hero-tags,.tools-grid{display:flex;flex-wrap:wrap;gap:9px}.hero-tags{margin-top:30px}.tag{display:inline-flex;align-items:center;min-height:34px;padding:6px 11px;border:1px solid var(--line-strong);border-radius:999px;color:var(--text-soft);background:rgba(255,255,255,.035);font-size:.79rem;font-weight:650}.hero-panel{overflow:hidden;border:1px solid rgba(70,216,210,.24);border-radius:var(--radius-lg);background:linear-gradient(145deg,rgba(16,34,56,.96),rgba(8,22,38,.96));box-shadow:var(--shadow)}.hero-panel-main{padding:30px}.hero-panel-main strong{display:block;color:var(--cyan);font-size:clamp(3.5rem,6vw,5rem);font-weight:720;letter-spacing:-.07em;line-height:.9}.hero-panel-main p{margin:12px 0 0;color:var(--text-soft);font-size:.92rem;line-height:1.5}.hero-panel-footer{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line)}.hero-stat{padding:20px 22px}.hero-stat+.hero-stat{border-left:1px solid var(--line)}.hero-stat b{display:block;color:var(--text);font-size:1.65rem;letter-spacing:-.04em}.hero-stat span{color:var(--muted);font-size:.77rem}
+.purpose{padding:0 0 clamp(64px,8vw,96px)}.purpose-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:20px}.purpose-card{padding:clamp(24px,4vw,38px);border:1px solid var(--line);border-radius:var(--radius-lg);background:rgba(255,255,255,.025)}.purpose-label{margin:0 0 14px;color:var(--cyan);font-size:.74rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.purpose-card h2{margin:0;color:var(--text);font-size:clamp(1.65rem,3vw,2.4rem);font-weight:650;letter-spacing:-.04em;line-height:1.18}.purpose-card p{margin:18px 0 0;color:var(--text-soft)}.logic-flow{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:24px}.logic-step{padding:8px 11px;border:1px solid var(--line);border-radius:8px;color:var(--text-soft);background:rgba(255,255,255,.03);font-size:.81rem;font-weight:700}.logic-arrow{color:var(--cyan);font-weight:800}
+main section{scroll-margin-top:92px}.portfolio-section{padding:clamp(66px,8vw,108px) 0}.portfolio-section+.portfolio-section{border-top:1px solid var(--line)}.section-heading{display:grid;grid-template-columns:54px minmax(0,1fr);gap:18px;max-width:920px;margin-bottom:38px}.section-number{display:grid;place-items:center;width:54px;height:40px;border:1px solid rgba(70,216,210,.32);border-radius:7px;color:var(--cyan);background:rgba(70,216,210,.055);font-size:.76rem;font-weight:800;letter-spacing:.06em}.section-copy{min-width:0}.section-label{margin:0 0 5px;color:var(--cyan);font-size:.72rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.section-heading h2{margin:0;color:var(--text);font-size:clamp(1.8rem,3.5vw,2.75rem);font-weight:650;letter-spacing:-.045em;line-height:1.15}.section-heading p{margin:11px 0 0;color:var(--muted);font-size:.96rem}
+.case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.case-card{position:relative;min-width:0;overflow:clip;border:1px solid var(--line);border-radius:var(--radius-lg);background:linear-gradient(145deg,rgba(16,34,56,.82),rgba(10,24,41,.88));transition:transform .22s ease,border-color .22s ease,background .22s ease,box-shadow .22s ease}.case-card::before{position:absolute;top:24px;bottom:24px;left:0;width:2px;content:"";opacity:.42;background:linear-gradient(180deg,var(--cyan),var(--blue));transition:opacity .22s ease}.case-card:hover{border-color:rgba(70,216,210,.30);background:linear-gradient(145deg,rgba(18,40,65,.96),rgba(10,26,44,.96));box-shadow:var(--shadow);transform:translateY(-4px)}.case-card[open]{border-color:rgba(70,216,210,.32);background:linear-gradient(145deg,rgba(18,40,65,.98),rgba(10,26,44,.98));box-shadow:var(--shadow)}.case-card[open]::before{opacity:1}.case-card summary{display:grid;grid-template-columns:46px minmax(0,1fr) 28px;align-items:start;gap:16px;padding:25px;cursor:pointer;list-style:none}.case-card summary::-webkit-details-marker{display:none}.case-number{display:grid;place-items:center;width:46px;height:40px;border:1px solid rgba(95,140,255,.18);border-radius:8px;color:var(--blue);background:rgba(95,140,255,.07);font-size:.79rem;font-weight:820}.case-title{display:block;color:var(--text);font-size:1.06rem;font-weight:730;line-height:1.36}.case-brief{display:block;margin-top:8px;color:var(--muted);font-size:.89rem;line-height:1.55}.status{display:inline-flex;align-items:center;gap:7px;margin-top:14px;color:var(--green);font-size:.72rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}.status::before{width:7px;height:7px;border-radius:50%;content:"";background:currentColor}.status.progress{color:var(--amber)}.status.active{color:var(--blue)}.chevron{display:grid;place-items:center;width:28px;height:28px;margin-top:5px;border:1px solid var(--line);border-radius:7px;color:var(--cyan);background:rgba(255,255,255,.04);transition:transform .22s ease,background .22s ease}.chevron::before{width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;content:"";transform:translateY(-2px) rotate(45deg)}.case-card[open] .chevron{background:rgba(70,216,210,.09);transform:rotate(180deg)}.case-details{display:grid;gap:21px;margin:0 25px 26px 87px;padding-top:23px;border-top:1px solid var(--line)}.detail h3{margin:0 0 6px;color:var(--cyan);font-size:.73rem;font-weight:820;letter-spacing:.11em;text-transform:uppercase}.detail p{margin:0;color:var(--text-soft);font-size:.91rem}.detail p+p{margin-top:10px}.method-flow{padding-left:15px;border-left:2px solid var(--cyan);color:var(--text)!important;font-weight:700}.case-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:2px}.case-link{display:inline-flex;align-items:center;justify-content:center;width:fit-content;min-height:42px;padding:10px 15px;border:1px solid rgba(70,216,210,.34);border-radius:8px;color:var(--text);background:rgba(70,216,210,.06);font-size:.84rem;font-weight:750;text-decoration:none;transition:background .18s ease,border-color .18s ease,transform .18s ease}.case-link:hover{border-color:var(--cyan);background:rgba(70,216,210,.12);transform:translateY(-2px)}.case-link.secondary{border-color:rgba(95,140,255,.28);background:rgba(95,140,255,.06)}.case-link.secondary:hover{border-color:var(--blue);background:rgba(95,140,255,.13)}
+#management{background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.01))}#career .case-grid{grid-template-columns:minmax(0,720px)}#methodology{position:relative;overflow:hidden;background:linear-gradient(145deg,#0d1d30,#081521)}#methodology::before{position:absolute;inset:0;content:"";pointer-events:none;opacity:.23;background-image:linear-gradient(rgba(95,140,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(95,140,255,.09) 1px,transparent 1px);background-size:68px 68px}#methodology .container{position:relative;z-index:1}.methodology-intro{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(250px,.8fr);gap:18px;margin-bottom:26px}.methodology-thesis,.methodology-note{padding:26px;border:1px solid var(--line);border-radius:var(--radius-lg)}.methodology-thesis{background:rgba(70,216,210,.055)}.methodology-note{background:rgba(167,139,250,.045)}.methodology-thesis strong,.methodology-note strong{display:block;margin-bottom:9px;color:var(--text);font-size:1.05rem}.methodology-thesis p,.methodology-note p{margin:0;color:var(--text-soft);font-size:.92rem}.pipeline{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin:28px 0}.pipeline-step{position:relative;padding:18px 12px;border:1px solid var(--line);border-radius:10px;color:var(--text-soft);background:rgba(255,255,255,.035);font-size:.82rem;font-weight:750;text-align:center}.pipeline-step:not(:last-child)::after{position:absolute;z-index:2;top:50%;right:-8px;content:"→";color:var(--cyan);transform:translate(50%,-50%)}
+.principles{padding:clamp(64px,8vw,96px) 0}.principles-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.principle-card{padding:25px;border:1px solid var(--line);border-radius:var(--radius-lg);background:rgba(255,255,255,.025)}.principle-card span{display:block;margin-bottom:12px;color:var(--cyan);font-size:.73rem;font-weight:820;letter-spacing:.11em;text-transform:uppercase}.principle-card h3{margin:0;color:var(--text);font-size:1.02rem}.principle-card p{margin:11px 0 0;color:var(--muted);font-size:.88rem}.tools-section{padding:clamp(58px,7vw,90px) 0 clamp(74px,9vw,116px)}.tools-panel{padding:clamp(26px,4vw,42px);border:1px solid rgba(95,140,255,.22);border-radius:var(--radius-xl);background:linear-gradient(145deg,rgba(16,34,56,.95),rgba(8,20,35,.96));box-shadow:var(--shadow)}.tools-panel h2{margin:0;color:var(--text);font-size:clamp(1.65rem,3vw,2.35rem);font-weight:650;letter-spacing:-.04em}.tools-panel p{margin:9px 0 0;color:var(--muted)}.tools-grid{margin-top:25px}footer{padding:28px 0 38px;border-top:1px solid var(--line);color:var(--muted);font-size:.79rem}.footer-row{display:flex;justify-content:space-between;gap:24px}
+@media(max-width:920px){.site-header{position:static}.nav{align-items:flex-start;flex-direction:column;gap:9px;padding:15px 0}.nav-links{width:100%;justify-content:flex-start;overflow-x:auto;padding-bottom:3px;scrollbar-width:thin}.nav-links li{flex:0 0 auto}.nav-links a{background:rgba(255,255,255,.04)}.hero-grid,.purpose-grid,.methodology-intro{grid-template-columns:1fr}.hero-panel{max-width:430px}.case-grid{grid-template-columns:1fr}.principles-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.container{width:min(calc(100% - 28px),var(--container))}html{scroll-padding-top:16px}.hero{padding-top:54px}h1{font-size:clamp(2.8rem,15vw,4.3rem)}.hero-subtitle{font-size:1.04rem}.hero-panel-main{padding:24px}.section-heading{grid-template-columns:44px minmax(0,1fr);gap:13px}.section-number{width:44px;height:38px}.case-card summary{grid-template-columns:38px minmax(0,1fr) 26px;gap:12px;padding:20px 16px}.case-number{width:38px;height:36px}.case-title{font-size:.98rem}.case-brief{font-size:.86rem}.case-details{margin:0 16px 22px;padding-top:20px}.pipeline{grid-template-columns:1fr}.pipeline-step:not(:last-child)::after{top:auto;right:50%;bottom:-11px;content:"↓";transform:translate(50%,50%)}.principles-grid{grid-template-columns:1fr}.footer-row{flex-direction:column;gap:6px}.hero-tags,.tools-grid{gap:7px}.tag{font-size:.76rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
 </style>
 </head>
-<body data-oxa-design="Executive Systems V2">
-<a class="skip-link" href="#main">Перейти к содержанию</a>
+<body>
+<a class="skip-link" href="#main">К содержанию</a>
 <header class="site-header">
-<nav aria-label="Основная навигация" class="nav container">
-<a class="brand" href="#top">ИИ-портфолио</a>
-<ul class="nav-links">
-<li><a href="#finance">Финансы и аналитика</a></li>
-<li><a href="#management">Управление</a></li>
-<li><a href="#career">Карьера финансового директора</a></li>
-<li><a href="#methodology">Методология ИИ</a></li>
-</ul>
-</nav>
+  <div class="container nav">
+    <a class="brand" href="#top">AI Portfolio <span>| CFO</span></a>
+    <nav aria-label="Навигация по портфолио">
+      <ul class="nav-links">
+        <li><a href="#finance">Финансы</a></li>
+        <li><a href="#management">Управление</a></li>
+        <li><a href="#career">Карьера</a></li>
+        <li><a href="#methodology">Методология</a></li>
+        <li><a href="#tools">Инструменты</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 <main id="main">
-<section aria-labelledby="hero-title" class="hero" id="top">
-<div class="container hero-grid">
-<div>
-<p class="eyebrow">Профессиональное портфолио</p>
-<h1 id="hero-title">AI Portfolio | CFO</h1>
-<p class="hero-subtitle">Практическое применение искусственного интеллекта в финансах, управлении, автоматизации и развитии карьеры</p>
-<p class="hero-positioning">11 практических кейсов применения ИИ, объединённых в 4 направления профессиональной работы.</p>
-<div aria-label="Направления портфолио" class="hero-tags">
-<span class="tag">Финансы и аналитика</span>
-<span class="tag">Управление и автоматизация</span>
-<span class="tag">Карьера финансового директора</span>
-<span class="tag">Методология применения ИИ</span>
-</div>
-</div>
-<aside aria-label="Состав портфолио" class="hero-note">
-<strong>11 × 4</strong>
-<span>Одиннадцать реализованных и развиваемых кейсов в четырёх управленческих направлениях.</span>
-</aside>
-</div>
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <p class="eyebrow">Практическое профессиональное портфолио</p>
+      <h1>AI Portfolio<br>CFO</h1>
+      <p class="hero-subtitle">Практическое применение искусственного интеллекта в финансах, аналитике, управлении, автоматизации и профессиональной работе финансового директора.</p>
+      <p class="hero-positioning">Фокус — не на использовании ИИ как отдельной технологии, а на создании прикладных моделей, исследований, управленческих инструментов и повторяемых рабочих процессов.</p>
+      <div class="hero-tags">
+        <span class="tag">Financial Modeling</span><span class="tag">Research</span><span class="tag">Scenario Analysis</span><span class="tag">Management Systems</span><span class="tag">Automation</span><span class="tag">AI Workflows</span>
+      </div>
+    </div>
+    <aside class="hero-panel" aria-label="Структура портфолио">
+      <div class="hero-panel-main"><strong>11</strong><p>реализованных и развиваемых практических кейсов применения ИИ в профессиональной работе.</p></div>
+      <div class="hero-panel-footer"><div class="hero-stat"><b>4</b><span>направления</span></div><div class="hero-stat"><b>1</b><span>единая методология</span></div></div>
+    </aside>
+  </div>
 </section>
-<section aria-labelledby="finance-title" class="portfolio-section" id="finance">
-<div class="container">
-<header class="section-heading">
-<span aria-hidden="true" class="section-marker">01</span>
-<h2 id="finance-title">Финансы и аналитика</h2>
-<p>Исследования, сценарные расчёты и динамические модели для принятия решений.</p>
-</header>
-<div class="case-grid">
-<details class="case-card">
-<summary>
-<span class="case-number">01</span>
-<span>
-<span class="case-title">Рынок жилой недвижимости РФ: платежеспособный спрос и сценарная модель 2026–2035</span>
-<span class="case-brief">Глубинное исследование для стратегического решения девелопера: спрос, предложение, остатки, ипотечная доступность, сценарии и двухконтурная независимая проверка.</span>
-<span class="status">Реализован</span>
-</span>
-<span aria-hidden="true" class="chevron"></span>
-</summary>
-<div class="case-body"><div class="case-body-inner"><div class="case-details">
-<div class="detail"><h3>Задача</h3><p>Оценить, какой объём нового жилья российский первичный рынок способен экономически поглощать при разных траекториях ипотеки, доходов, цен и запусков, и определить риск накопления непроданных остатков для портфельных решений девелопера.</p></div>
-<div class="detail"><h3>Решение с ИИ</h3><p>Построен исследовательский и модельный контур: проверка исходной гипотезы, анализ домохозяйств и платежеспособности, динамическая модель спроса и предложения на 2026–2035 годы, сценарии BASE / UPSIDE / DOWNSIDE, ипотечная доступность, региональная карта, чувствительность и backtest. Результат прошёл независимый аудит и второй контур проверки.</p></div>
-<div class="detail"><h3>Результат</h3><p>Сформирован инструмент поддержки стратегического решения: базовый коридор устойчивого поглощения рынка, сценарные траектории спроса и остатков, ограничения для темпа новых запусков и правила региональной валидации. Существенные неопределённости зафиксированы как диапазоны или UNKNOWN, без создания ложной точности.</p></div>
-<div class="detail"><h3>Статус</h3><p>Реализован. Исследование, Excel-модель и руководство подготовлены; контроль качества выполнен в двух контурах.</p></div>
-<a class="case-link" href="https://obogodelova-ui.github.io/residential-market-research-2026-2035/" rel="noopener noreferrer" target="_blank">Открыть исследование →</a></div></div></div>
-</details>
-<details class="case-card">
-<summary>
-<span class="case-number">02</span>
-<span>
-<span class="case-title">Исследование промышленного строительства и оценка диверсификации</span>
-<span class="case-brief">Оценка сегментов, регионов и моделей входа для жилищного девелопера с разработкой аналитической модели.</span>
-<span class="status">Реализован</span>
-</span>
-<span aria-hidden="true" class="chevron"></span>
-</summary>
-<div class="case-body"><div class="case-body-inner"><div class="case-details">
-<div class="detail"><h3>Задача</h3><p>Оценить промышленное строительство как возможное направление диверсификации жилищного девелопера и определить потенциально привлекательные сегменты и модели входа.</p></div>
-<div class="detail"><h3>Решение с ИИ</h3><p>Проведён анализ рынка, сегментов и регионов, оценена переносимость существующих компетенций девелопера, выявлены недостающие компетенции и рассмотрены альтернативные модели выхода на рынок. Разработана аналитическая модель для сравнения вариантов.</p></div>
-<div class="detail"><h3>Результат</h3><p>Сформирована основа для принятия стратегического решения о целесообразности диверсификации и выбора приоритетных направлений входа. Предусмотрена независимая перепроверка исследования и модели.</p></div>
-<div class="detail"><h3>Статус</h3><p>Реализован.</p></div>
-</div></div></div>
-</details>
-<details class="case-card">
-<summary>
-<span class="case-number">03</span>
-<span>
-<span class="case-title">Динамические финансовые модели девелоперских проектов</span>
-<span class="case-brief">Проектирование и тестирование моделей капитальных затрат, продаж, финансирования, денежных потоков, сценариев, ТЭП и ключевых финансовых показателей.</span>
-<span class="status progress">В развитии</span>
-</span>
-<span aria-hidden="true" class="chevron"></span>
-</summary>
-<div class="case-body"><div class="case-body-inner"><div class="case-details">
-<div class="detail"><h3>Задача</h3><p>Создать динамическую модель девелоперского проекта, позволяющую оценивать экономику проекта, финансирование, денежные потоки и влияние изменения ключевых исходных параметров.</p></div>
-<div class="detail"><h3>Решение с ИИ</h3><p>Спроектирована архитектура модели: исходные данные и ТЭП, капитальные затраты, продажи, проектное финансирование, проценты, отчёт о прибылях и убытках, баланс, денежный поток, ключевые показатели, сценарии и чувствительность. Разработана концепция автоматического калькулятора ТЭП. ИИ используется также для технического аудита формул, поиска ошибок и повторного тестирования после исправлений.</p></div>
-<div class="detail"><h3>Результат</h3><p>Создана архитектура динамической модели и отработана методология её разработки и контроля качества. Сформирован подход к тестированию моделей через контрольные проверки, сценарии, граничные случаи и повторное тестирование.</p></div>
-<div class="detail"><h3>Статус</h3><p>В развитии.</p></div>
-</div></div></div>
-</details>
-<details class="case-card">
-<summary>
-<span class="case-number">04</span>
-<span>
-<span class="case-title">Моделирование финансовых решений</span>
-<span class="case-brief">Сценарный анализ альтернативных финансовых стратегий с расчётом стоимости финансирования, доходности и итогового экономического эффекта.</span>
-<span class="status">Реализован</span>
-</span>
-<span aria-hidden="true" class="chevron"></span>
-</summary>
-<div class="case-body"><div class="case-body-inner"><div class="case-details">
-<div class="detail"><h3>Задача</h3><p>Сравнить альтернативные способы использования собственных и заёмных денежных средств с учётом стоимости финансирования, доходности свободной ликвидности и различных графиков погашения.</p></div>
-<div class="detail"><h3>Решение с ИИ</h3><p>Разработана расчётная модель с ежедневным начислением процентов, льготными периодами, циклами погашения, альтернативной доходностью денежных средств и стресс-сценариями.</p></div>
-<div class="detail"><h3>Результат</h3><p>Получен инструмент для количественного сравнения финансовых стратегий по их итоговому экономическому эффекту и проверки решений при изменении исходных условий.</p></div>
-<div class="detail"><h3>Статус</h3><p>Реализован.</p></div>
-</div></div></div>
-</details>
-</div>
-</div>
+<section class="purpose">
+  <div class="container purpose-grid">
+    <article class="purpose-card"><p class="purpose-label">Назначение</p><h2>ИИ как рабочий инструмент CFO</h2><p>Портфолио объединяет реальные профессиональные задачи: исследования рынков, финансовые и сценарные модели, трансформацию финансовой функции, управленческие дашборды, прикладные веб-инструменты и карьерный контур.</p></article>
+    <article class="purpose-card"><p class="purpose-label">Логика работы</p><h2>От цели — к измеримому результату</h2><p>ИИ используется не как самоцель и не как конечный результат, а как часть управленческого процесса: сначала определяется цель и требуемый бизнес-результат, затем формулируется задача, подбираются и проверяются данные, строится модель, проверяются выводы и только после этого принимается решение и оценивается его измеримый результат.</p><div class="logic-flow" aria-label="Целеполагание, бизнес-задача, данные, модель, вывод, решение, результат"><span class="logic-step">Целеполагание</span><span class="logic-arrow">→</span><span class="logic-step">Бизнес-задача</span><span class="logic-arrow">→</span><span class="logic-step">Данные</span><span class="logic-arrow">→</span><span class="logic-step">Модель</span><span class="logic-arrow">→</span><span class="logic-step">Вывод</span><span class="logic-arrow">→</span><span class="logic-step">Решение</span><span class="logic-arrow">→</span><span class="logic-step">Результат</span></div></article>
+  </div>
 </section>
-<section aria-labelledby="management-title" class="portfolio-section" id="management">
-<div class="container">
-<header class="section-heading">
-<span aria-hidden="true" class="section-marker">02</span>
-<h2 id="management-title">Управление и автоматизация</h2>
-<p>Организационные решения, управленческая отчётность и прикладные инструменты.</p>
-</header>
-<div class="case-grid">
-<details class="case-card">
-<summary>
-<span class="case-number">05</span>
-<span><span class="case-title">План трансформации финансовой функции</span><span class="case-brief">Диагностика текущей модели, проектирование целевой структуры, распределение ответственности и разработка дорожной карты изменений.</span><span class="status">Реализован</span></span>
-<span aria-hidden="true" class="chevron"></span>
-</summary>
-<div class="case-body"><div class="case-body-inner"><div class="case-details">
-<div class="detail"><h3>Задача</h3><p>Разработать программу трансформации крупной финансовой функции с учётом существующей организационной структуры, распределения полномочий, качества руководителей и рисков переходного периода.</p></div>
-<div class="detail"><h3>Решение с ИИ</h3><p>Последовательно проведены диагностика текущей модели, проектирование целевого состояния, анализ функций и ответственности, организационных рисков и управленческих ограничений. Разработана дорожная карта трансформации.</p></div>
-<div class="detail"><h3>Результат</h3><p>Сформирован практически применимый план перехода от текущего состояния финансовой функции к целевой модели с приоритетами, ответственностью и последовательностью изменений.</p></div>
-<div class="detail"><h3>Статус</h3><p>Реализован.</p></div>
-<a class="case-link" href="https://obogodelova-ui.github.io/-finance-transformation-playbook/" rel="noopener noreferrer" target="_blank">Открыть методологию трансформации →</a>
-</div></div></div>
-</details>
-<details class="case-card">
-<summary>
-<span class="case-number">06</span>
-<span><span class="case-title">Управленческие дашборды для разных уровней руководства</span><span class="case-brief">Разработка логики показателей и форматов отчётности для собственника, генерального директора, финансового директора и функциональных руководителей.</span><span class="status">Реализован</span></span>
-<span aria-hidden="true" class="chevron"></span>
-</summary>
-<div class="case-body"><div class="case-body-inner"><div class="case-details">
-<div class="detail"><h3>Задача</h3><p>Создать систему управленческой визуализации, в которой глубина и состав информации соответствуют уровню принимаемых решений.</p></div>
-<div class="detail"><h3>Решение с ИИ</h3><p>Разработаны подходы к структуре показателей и визуальному представлению информации для собственника, генерального директора, финансового директора и функциональных руководителей с различной степенью детализации.</p></div>
-<div class="detail"><h3>Результат</h3><p>Сформированы форматы дашбордов и требования к управленческой отчётности, ориентированные на принятие решений, а не на механическое представление массива показателей.</p></div>
-<div class="detail"><h3>Статус</h3><p>Реализован.</p></div>
-</div></div></div>
-</details>
-<details class="case-card">
-<summary>
-<span class="case-number">07</span>
-<span><span class="case-title">Калькулятор предварительного ГПР</span><span class="case-brief">Динамический веб-конструктор предварительного графика производства работ девелоперского проекта с настраиваемой структурой работ, нормативами длительности и зависимостями.</span><span class="status">Реализован · v1.2.2</span></span>
-<span aria-hidden="true" class="chevron"></span>
-</summary>
-<div class="case-body"><div class="case-body-inner"><div class="case-details">
-<div class="detail"><h3>Задача</h3><p>Создать практически применимый инструмент предварительного планирования, позволяющий на ранней стадии проекта быстро формировать укрупнённый ГПР, оценивать последовательность и сроки строительства и проводить сценарный анализ до разработки детального календарного графика.</p></div>
-<div class="detail"><h3>Решение с ИИ</h3><p>Разработан автономный веб-калькулятор, в котором модель не является статичным шаблоном. Пользователь может добавлять очереди и объекты, пополнять иерархический справочник работ, корректировать экспертные нормативы длительности, изменять типы зависимостей FS / SS / FF / SF и временные лаги, а также задавать внешние ограничения. Расчёт формирует результаты, диаграмму Ганта, подробную таблицу ГПР и автоматические проверки «ПРОЙДЕНО / ПРЕДУПРЕЖДЕНИЕ / ОШИБКА».</p></div>
-<div class="detail"><h3>Результат</h3><p>Создан и опубликован калькулятор предварительного ГПР v1.2.2: динамический веб-инструмент с возможностью сохранения исходных данных, экспорта в файл CSV и печати результатов. Архитектура позволяет постепенно калибровать нормативы и зависимости на фактических данных конкретного девелопера и развивать корпоративную базу нормативов строительства.</p></div>
-<div class="detail"><h3>Статус</h3><p>Реализован и опубликован. Версия v1.2.2 прошла функциональное и регрессионное тестирование.</p></div>
-<a class="case-link" href="https://obogodelova-ui.github.io/PRELIMINARY-GPR-Calculator/" rel="noopener noreferrer" target="_blank">Открыть калькулятор →</a>
-</div></div></div>
-</details>
-<details class="case-card">
-<summary>
-<span class="case-number">08</span>
-<span><span class="case-title">Разработка системы мотивации финансового блока</span><span class="case-brief">Методология и интерактивный веб-конструктор для проектирования KPI, плановых показателей, оценки план-факт и расчёта материального и нематериального вознаграждения.</span><span class="status">Реализован</span></span>
-<span aria-hidden="true" class="chevron"></span>
-</summary>
-<div class="case-body"><div class="case-body-inner"><div class="case-details">
-<div class="detail"><h3>Задача</h3><p>Создать понятную и практически применимую систему мотивации финансового блока, связывающую результаты работы сотрудников с измеримыми KPI, горизонтом оценки и правилами материального и нематериального вознаграждения.</p></div>
-<div class="detail"><h3>Решение с ИИ</h3><p>Разработаны методология и интерактивный веб-конструктор с динамическими справочниками, единым вводом исходных данных, настройкой KPI, периодов и проектов, подсказками по заполнению и контролями корректности. В контуре предусмотрены карточки сотрудника с плановыми KPI и итоговая оценка «план-факт» с расчётом вознаграждения.</p></div>
-<div class="detail"><h3>Результат</h3><p>Создан и опубликован рабочий веб-прототип, который переводит методику мотивации из регламента в исполнимый управленческий инструмент и позволяет последовательно пройти путь от настройки KPI до подведения итогов.</p></div>
-<div class="detail"><h3>Статус</h3><p>Реализован и опубликован.</p></div>
-<a class="case-link" href="https://obogodelova-ui.github.io/Findep_motivation_system/" rel="noopener noreferrer" target="_blank">Открыть конструктор мотивации →</a>
-</div></div></div>
-</details>
-<details class="case-card">
-<summary>
-<span class="case-number">09</span>
-<span><span class="case-title">Разработка ТЗ на систему управления взаимоотношениями с клиентами</span><span class="case-brief">Формализация бизнес-процессов и перевод требований бизнеса в структурированное техническое задание для автоматизации.</span><span class="status">Реализован</span></span>
-<span aria-hidden="true" class="chevron"></span>
-</summary>
-<div class="case-body"><div class="case-body-inner"><div class="case-details">
-<div class="detail"><h3>Задача</h3><p>Перевести требования бизнеса к системе управления взаимоотношениями с клиентами из набора пользовательских пожеланий и бизнес-процессов в структурированное техническое задание для последующей автоматизации.</p></div>
-<div class="detail"><h3>Решение с ИИ</h3><p>ИИ использован для структурирования бизнес-требований, описания процессов, ролей, данных, функциональных требований и логики будущей системы.</p></div>
-<div class="detail"><h3>Результат</h3><p>Подготовлено структурированное ТЗ, пригодное для обсуждения с бизнес-заказчиками и командой разработки.</p></div>
-<div class="detail"><h3>Статус</h3><p>Реализован.</p></div>
-</div></div></div>
-</details>
-</div>
-</div>
+<section class="portfolio-section" id="finance">
+  <div class="container">
+    <header class="section-heading"><span class="section-number" aria-hidden="true">01</span><div class="section-copy"><p class="section-label">Finance & Analytics</p><h2>Финансы и аналитика</h2><p>Исследования, динамические модели и сценарные расчёты для подготовки и проверки финансовых и стратегических решений.</p></div></header>
+    <div class="case-grid">
+      <details class="case-card"><summary><span class="case-number">01</span><span><span class="case-title">Рынок жилой недвижимости РФ: платежеспособный спрос и сценарная модель 2026–2035</span><span class="case-brief">Исследование спроса, предложения, остатков, ипотечной доступности и сценариев развития рынка.</span><span class="status">Реализован</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="case-details">
+        <div class="detail"><h3>Задача</h3><p>Оценить, какой объём нового жилья российский первичный рынок способен экономически поглощать при разных траекториях ипотеки, доходов, цен и запусков, а также определить риск накопления непроданных остатков для портфельных решений девелопера.</p></div>
+        <div class="detail"><h3>Что сделано с ИИ</h3><p>Построен исследовательский и модельный контур: проверка исходной гипотезы, анализ домохозяйств и платежеспособности, динамическая модель спроса и предложения на 2026–2035 годы, сценарии BASE / UPSIDE / DOWNSIDE, ипотечная доступность, региональная карта, чувствительность и backtest.</p><p>Результат прошёл независимый аудит и второй контур проверки.</p></div>
+        <div class="detail"><h3>Результат</h3><p>Сформирован инструмент поддержки стратегического решения: базовый коридор устойчивого поглощения рынка, сценарные траектории спроса и остатков, ограничения для темпа новых запусков и правила региональной валидации.</p><p>Существенные неопределённости зафиксированы как диапазоны или UNKNOWN без создания ложной точности.</p></div>
+        <div class="detail"><h3>Статус</h3><p>Исследование, Excel-модель и руководство подготовлены. Контроль качества выполнен в двух контурах.</p></div>
+        <div class="case-actions"><a class="case-link" href="https://obogodelova-ui.github.io/residential-market-research-2026-2035/" target="_blank" rel="noopener noreferrer">Открыть исследование →</a><a class="case-link secondary" href="https://obogodelova-ui.github.io/residential-market-research-2026-2035/model_user_guide_2026_2035.pdf" target="_blank" rel="noopener noreferrer">Открыть руководство →</a><a class="case-link secondary" href="https://docs.google.com/spreadsheets/d/1WGGNvVIQ4Zo4n0-Ygzroz5KdFGAkFIuu/edit" target="_blank" rel="noopener noreferrer">Открыть модель →</a></div>
+      </div></details>
+      <details class="case-card"><summary><span class="case-number">02</span><span><span class="case-title">Исследование промышленного строительства и оценка диверсификации</span><span class="case-brief">Анализ сегментов, регионов, переносимых компетенций и возможных моделей входа жилищного девелопера.</span><span class="status">Реализован</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="case-details">
+        <div class="detail"><h3>Задача</h3><p>Оценить промышленное строительство как возможное направление диверсификации жилищного девелопера и определить потенциально привлекательные сегменты и модели входа.</p></div>
+        <div class="detail"><h3>Что сделано с ИИ</h3><p>Проведён анализ рынка, сегментов и регионов, оценена переносимость существующих компетенций девелопера, выявлены недостающие компетенции и рассмотрены альтернативные модели выхода на рынок.</p><p>Разработана аналитическая модель для сравнения вариантов.</p></div>
+        <div class="detail"><h3>Результат</h3><p>Сформирована основа для принятия стратегического решения о целесообразности диверсификации и выбора приоритетных направлений входа. Предусмотрена независимая перепроверка исследования и модели.</p></div>
+        <div class="detail"><h3>Статус</h3><p>Реализован.</p></div>
+        <div class="case-actions"><a class="case-link" href="https://docs.google.com/document/d/1Ib3KCCdXdqL0EfeASdkeexWb2R86nTgH/edit" target="_blank" rel="noopener noreferrer">Открыть исследование →</a><a class="case-link secondary" href="https://docs.google.com/spreadsheets/d/1iNLbX-oAULwpMtMChW8HhHtPS7f7Ylo5/edit" target="_blank" rel="noopener noreferrer">Открыть модель →</a></div>
+      </div></details>
+      <details class="case-card"><summary><span class="case-number">03</span><span><span class="case-title">Динамические финансовые модели девелоперских проектов</span><span class="case-brief">CAPEX, продажи, проектное финансирование, денежные потоки, сценарии, ТЭП и ключевые финансовые показатели.</span><span class="status progress">В развитии</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="case-details">
+        <div class="detail"><h3>Задача</h3><p>Создать динамическую модель девелоперского проекта, позволяющую оценивать экономику проекта, финансирование, денежные потоки и влияние изменения ключевых исходных параметров.</p></div>
+        <div class="detail"><h3>Что сделано с ИИ</h3><p>Спроектирована архитектура модели: исходные данные и ТЭП, капитальные затраты, продажи, проектное финансирование, проценты, отчёт о прибылях и убытках, баланс, денежный поток, ключевые показатели, сценарии и чувствительность.</p><p>Разработана концепция автоматического калькулятора ТЭП. ИИ используется также для технического аудита формул, поиска ошибок и повторного тестирования после исправлений.</p></div>
+        <div class="detail"><h3>Результат</h3><p>Создана архитектура динамической модели и отработана методология её разработки и контроля качества. Сформирован подход к тестированию через контрольные проверки, сценарии, граничные случаи и повторное тестирование.</p></div>
+        <div class="detail"><h3>Статус</h3><p>В развитии. Публичный артефакт пока не публикуется.</p></div>
+      </div></details>
+      <details class="case-card"><summary><span class="case-number">04</span><span><span class="case-title">Моделирование финансовых решений</span><span class="case-brief">Сценарный анализ альтернативных финансовых стратегий, стоимости финансирования и итогового экономического эффекта.</span><span class="status">Реализован</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="case-details">
+        <div class="detail"><h3>Задача</h3><p>Сравнить альтернативные способы использования собственных и заёмных денежных средств с учётом стоимости финансирования, доходности свободной ликвидности и различных графиков погашения.</p></div>
+        <div class="detail"><h3>Что сделано с ИИ</h3><p>Разработана расчётная модель с ежедневным начислением процентов, льготными периодами, циклами погашения, альтернативной доходностью денежных средств и стресс-сценариями.</p></div>
+        <div class="detail"><h3>Результат</h3><p>Получен инструмент количественного сравнения финансовых стратегий по итоговому экономическому эффекту и проверки решений при изменении исходных условий.</p></div>
+        <div class="detail"><h3>Статус</h3><p>Реализован. Отдельный публичный артефакт не размещён.</p></div>
+      </div></details>
+    </div>
+  </div>
 </section>
-<section aria-labelledby="career-title" class="portfolio-section" id="career">
-<div class="container">
-<header class="section-heading">
-<span aria-hidden="true" class="section-marker">03</span>
-<h2 id="career-title">Карьера финансового директора</h2>
-<p>Позиционирование, работа с рынком и подготовка к ключевым карьерным решениям.</p>
-</header>
-<div class="case-grid">
-<details class="case-card">
-<summary>
-<span class="case-number">10</span>
-<span><span class="case-title">Управление карьерой финансового директора с применением ИИ</span><span class="case-brief">Подготовка резюме руководителя, профессионального позиционирования, поиск и оценка вакансий, подготовка к интервью и переговорам по компенсации.</span><span class="status active">Используется в работе</span></span>
-<span aria-hidden="true" class="chevron"></span>
-</summary>
-<div class="case-body"><div class="case-body-inner"><div class="case-details">
-<div class="detail"><h3>Задача</h3><p>Сформировать профессиональное позиционирование руководителя с опытом финансового директора и организовать системную работу с рынком вакансий руководящего уровня.</p></div>
-<div class="detail"><h3>Решение с ИИ</h3><p>Разработаны резюме руководителя и профиль кандидата, проведена структуризация опыта и достижений, создана система поиска и оценки вакансий. ИИ используется для анализа соответствия требованиям работодателя, подготовки к интервью и формирования переговорной позиции.</p></div>
-<div class="detail"><h3>Результат</h3><p>Создан единый карьерный контур: позиционирование → резюме → поиск → оценка возможностей → подготовка к интервью → переговоры.</p></div>
-<div class="detail"><h3>Статус</h3><p>Используется в работе.</p></div>
-</div></div></div>
-</details>
-</div>
-</div>
+<section class="portfolio-section" id="management">
+  <div class="container">
+    <header class="section-heading"><span class="section-number" aria-hidden="true">02</span><div class="section-copy"><p class="section-label">Management & Automation</p><h2>Управление и автоматизация</h2><p>Организационные решения, управленческая отчётность, прикладные инструменты и перевод методологии в рабочие системы.</p></div></header>
+    <div class="case-grid">
+      <details class="case-card"><summary><span class="case-number">05</span><span><span class="case-title">План трансформации финансовой функции</span><span class="case-brief">Диагностика текущей модели, проектирование целевой структуры, распределение ответственности и дорожная карта изменений.</span><span class="status">Реализован</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="case-details">
+        <div class="detail"><h3>Задача</h3><p>Разработать программу трансформации крупной финансовой функции с учётом существующей организационной структуры, распределения полномочий, качества руководителей и рисков переходного периода.</p></div>
+        <div class="detail"><h3>Что сделано с ИИ</h3><p>Последовательно проведены диагностика текущей модели, проектирование целевого состояния, анализ функций и ответственности, организационных рисков и управленческих ограничений. Разработана дорожная карта трансформации.</p></div>
+        <div class="detail"><h3>Результат</h3><p>Сформирован практически применимый план перехода от текущего состояния финансовой функции к целевой модели с приоритетами, ответственностью и последовательностью изменений.</p></div>
+        <div class="detail"><h3>Статус</h3><p>Реализован.</p></div>
+        <div class="case-actions"><a class="case-link" href="https://obogodelova-ui.github.io/-finance-transformation-playbook/" target="_blank" rel="noopener noreferrer">Открыть продукт →</a></div>
+      </div></details>
+      <details class="case-card"><summary><span class="case-number">06</span><span><span class="case-title">Управленческие дашборды для разных уровней руководства</span><span class="case-brief">Логика показателей и глубина управленческой информации в зависимости от уровня принимаемого решения.</span><span class="status">Реализован</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="case-details">
+        <div class="detail"><h3>Задача</h3><p>Создать систему управленческой визуализации, в которой глубина и состав информации соответствуют уровню принимаемых решений.</p></div>
+        <div class="detail"><h3>Что сделано с ИИ</h3><p>Разработаны подходы к структуре показателей и визуальному представлению информации для собственника, генерального директора, финансового директора и функциональных руководителей с различной степенью детализации.</p></div>
+        <div class="detail"><h3>Результат</h3><p>Сформированы форматы дашбордов и требования к управленческой отчётности, ориентированные на принятие решений, а не на механическое представление массива показателей.</p></div>
+        <div class="detail"><h3>Статус</h3><p>Методология реализована и включена в рабочую базу знаний.</p></div>
+        <div class="case-actions"><a class="case-link" href="https://docs.google.com/document/d/10CUE-YW0rvK8xegxM0Ox0ZkK-vtZXADXSUvTm-7m53Q/edit" target="_blank" rel="noopener noreferrer">Открыть workflow →</a></div>
+      </div></details>
+      <details class="case-card"><summary><span class="case-number">07</span><span><span class="case-title">Калькулятор предварительного ГПР</span><span class="case-brief">Динамический веб-конструктор предварительного графика производства работ девелоперского проекта.</span><span class="status">Реализован · v1.2.2</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="case-details">
+        <div class="detail"><h3>Задача</h3><p>Создать практически применимый инструмент предварительного планирования, позволяющий на ранней стадии проекта формировать укрупнённый ГПР, оценивать последовательность и сроки строительства и проводить сценарный анализ до разработки детального календарного графика.</p></div>
+        <div class="detail"><h3>Что сделано с ИИ</h3><p>Разработан автономный веб-калькулятор. Пользователь может добавлять очереди и объекты, пополнять иерархический справочник работ, корректировать экспертные нормативы длительности, изменять типы зависимостей FS / SS / FF / SF и временные лаги, а также задавать внешние ограничения.</p><p>Расчёт формирует результаты, диаграмму Ганта, подробную таблицу ГПР и автоматические проверки «ПРОЙДЕНО / ПРЕДУПРЕЖДЕНИЕ / ОШИБКА».</p></div>
+        <div class="detail"><h3>Результат</h3><p>Создан и опубликован калькулятор предварительного ГПР v1.2.2 с возможностью сохранения исходных данных, экспорта в CSV и печати результатов.</p><p>Архитектура позволяет постепенно калибровать нормативы и зависимости на фактических данных конкретного девелопера и развивать корпоративную базу нормативов строительства.</p></div>
+        <div class="detail"><h3>Статус</h3><p>Реализован и опубликован. Версия v1.2.2 прошла функциональное и регрессионное тестирование.</p></div>
+        <div class="case-actions"><a class="case-link" href="https://obogodelova-ui.github.io/PRELIMINARY-GPR-Calculator/" target="_blank" rel="noopener noreferrer">Открыть продукт →</a></div>
+      </div></details>
+      <details class="case-card"><summary><span class="case-number">08</span><span><span class="case-title">Система мотивации финансового блока</span><span class="case-brief">Методология и веб-конструктор KPI, оценки план-факт и материального и нематериального вознаграждения.</span><span class="status">Реализован</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="case-details">
+        <div class="detail"><h3>Задача</h3><p>Создать понятную и практически применимую систему мотивации финансового блока, связывающую результаты сотрудников с измеримыми KPI, горизонтом оценки и правилами материального и нематериального вознаграждения.</p></div>
+        <div class="detail"><h3>Что сделано с ИИ</h3><p>Разработаны методология и интерактивный веб-конструктор с динамическими справочниками, единым вводом исходных данных, настройкой KPI, периодов и проектов, подсказками по заполнению и контролями корректности.</p><p>В контуре предусмотрены карточки сотрудника с плановыми KPI и итоговая оценка «план-факт» с расчётом вознаграждения.</p></div>
+        <div class="detail"><h3>Результат</h3><p>Создан и опубликован рабочий веб-прототип, который переводит методику мотивации из регламента в исполнимый управленческий инструмент и позволяет последовательно пройти путь от настройки KPI до подведения итогов.</p></div>
+        <div class="detail"><h3>Статус</h3><p>Реализован и опубликован.</p></div>
+        <div class="case-actions"><a class="case-link" href="https://obogodelova-ui.github.io/Findep_motivation_system/" target="_blank" rel="noopener noreferrer">Открыть продукт →</a></div>
+      </div></details>
+      <details class="case-card"><summary><span class="case-number">09</span><span><span class="case-title">Целевая архитектура CRM девелопера</span><span class="case-brief">Формализация бизнес-процессов и перевод требований бизнеса в структурированную архитектуру автоматизации.</span><span class="status">Реализован</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="case-details">
+        <div class="detail"><h3>Задача</h3><p>Перевести требования бизнеса к CRM из набора пользовательских пожеланий и бизнес-процессов в структурированную архитектуру, пригодную для обсуждения с руководством и последующей автоматизации.</p></div>
+        <div class="detail"><h3>Что сделано с ИИ</h3><p>ИИ использован для структурирования бизнес-требований, описания процессов, ролей, данных, функциональных требований и логики будущей системы.</p></div>
+        <div class="detail"><h3>Результат</h3><p>Подготовлена целевая архитектура CRM девелопера: от концептуального слоя и логики процессов до функциональных требований, данных, автоматизации и управленческих дашбордов.</p></div>
+        <div class="detail"><h3>Статус</h3><p>Реализован.</p></div>
+        <div class="case-actions"><a class="case-link" href="https://drive.google.com/file/d/1g1MYJkpbPwx1fKlEbrv0zVW9fhqROvAi/view" target="_blank" rel="noopener noreferrer">Открыть материал →</a></div>
+      </div></details>
+    </div>
+  </div>
 </section>
-<section aria-labelledby="methodology-title" class="portfolio-section" id="methodology">
-<div class="container">
-<header class="section-heading">
-<span aria-hidden="true" class="section-marker">04</span>
-<h2 id="methodology-title">Методология применения ИИ в работе финансового директора</h2>
-<p>Переход от отдельных запросов к воспроизводимой системе профессиональной работы.</p>
-</header>
-<div aria-label="Смысловой переход от кейсов к системе" class="methodology-transition">
-<div class="transition-thesis">Кейсы показывают, как ИИ решает отдельные профессиональные задачи. Методология показывает, как превратить эти решения в повторяемую систему работы финансового директора.</div>
-<div class="transition-note">Это отдельный уровень зрелости портфолио: не ещё один кейс, а собственная логика работы — от данных и модели к решению, результату и накоплению проверенных знаний.</div>
-</div>
-<div aria-label="Логика работы Executive Systems" class="methodology-pipeline">
-<span>Данные</span>
-<span>Модель</span>
-<span>Вывод</span>
-<span>Решение</span>
-<span>Результат</span>
-</div>
-<div class="case-grid">
-<details class="case-card">
-<summary>
-<span class="case-number">11</span>
-<span><span class="case-title">Система профессиональной работы финансового директора с ИИ</span><span class="case-brief">Разработка промптов, цепочек промптов, независимой проверки результатов, работы нескольких ИИ и системы накопления профессиональных знаний.</span><span class="status active">Используется и развивается</span></span>
-<span aria-hidden="true" class="chevron"></span>
-</summary>
-<div class="case-body"><div class="case-body-inner"><div class="case-details">
-<div class="detail"><h3>Задача</h3><p>Перейти от использования ИИ для отдельных запросов к воспроизводимой системе применения ИИ в профессиональной работе финансового директора.</p></div>
-<div class="detail"><h3>Решение с ИИ</h3><p>Разработаны стандарты профессиональных промптов и цепочек промптов, правила работы с недостаточными данными, проверки результатов и использования нескольких моделей. Создаётся система знаний финансового директора для накопления проверенных промптов, правил, лучших практик, паттернов и профессиональных знаний.</p></div>
-<div class="detail"><h3>Результат</h3><p>Сформирована рабочая методология:</p><p class="method-flow">Промпт → цепочка промптов → повторяемый рабочий процесс финансового директора → инструмент / модель → накопление проверенных знаний.</p><p>Отработан принцип независимой проверки критичных результатов второй ИИ-моделью.</p></div>
-<div class="detail"><h3>Статус</h3><p>Используется и развивается.</p></div>
-</div></div></div>
-</details>
-</div>
-</div>
+<section class="portfolio-section" id="career">
+  <div class="container">
+    <header class="section-heading"><span class="section-number" aria-hidden="true">03</span><div class="section-copy"><p class="section-label">Career</p><h2>Карьера финансового директора</h2><p>Применение ИИ для профессионального позиционирования, работы с рынком и подготовки к ключевым карьерным решениям.</p></div></header>
+    <div class="case-grid">
+      <details class="case-card"><summary><span class="case-number">10</span><span><span class="case-title">Управление карьерой CFO с применением ИИ</span><span class="case-brief">Резюме руководителя, профессиональное позиционирование, поиск и оценка вакансий, подготовка к интервью и переговорам.</span><span class="status active">Используется в работе</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="case-details">
+        <div class="detail"><h3>Задача</h3><p>Сформировать профессиональное позиционирование руководителя с опытом финансового директора и организовать системную работу с рынком вакансий руководящего уровня.</p></div>
+        <div class="detail"><h3>Что сделано с ИИ</h3><p>Разработаны резюме руководителя и профиль кандидата, проведена структуризация опыта и достижений, создана система поиска и оценки вакансий.</p><p>ИИ используется для анализа соответствия требованиям работодателя, подготовки к интервью и формирования переговорной позиции.</p></div>
+        <div class="detail"><h3>Результат</h3><p class="method-flow">Позиционирование → резюме → поиск → оценка возможностей → подготовка к интервью → переговоры.</p></div>
+        <div class="detail"><h3>Статус</h3><p>Используется в работе. Публичные карьерные документы намеренно не размещены.</p></div>
+      </div></details>
+    </div>
+  </div>
 </section>
-<section aria-labelledby="tools-title" class="tools-section">
-<div class="container">
-<div class="tools-panel">
-<h2 id="tools-title">Инструменты и подходы</h2>
-<p>Технологии и методы, использованные в представленных кейсах.</p>
-<div class="tools-grid">
-<span class="tag">ChatGPT</span><span class="tag">Claude</span><span class="tag">Excel</span>
-<span class="tag">Financial Modeling</span><span class="tag">Market Research</span><span class="tag">Scenario Analysis</span>
-<span class="tag">Prompt Engineering</span><span class="tag">Prompt Chains</span><span class="tag">QA</span>
-<span class="tag">Regression Testing</span><span class="tag">Dashboard Design</span><span class="tag">CRM Requirements</span>
-<span class="tag">Knowledge System</span><span class="tag">Multi-AI Workflow</span><span class="tag">GitHub</span>
-</div>
-</div>
-</div>
+<section class="portfolio-section" id="methodology">
+  <div class="container">
+    <header class="section-heading"><span class="section-number" aria-hidden="true">04</span><div class="section-copy"><p class="section-label">AI Operating Model</p><h2>Методология применения ИИ в работе финансового директора</h2><p>Переход от отдельных запросов к воспроизводимой системе профессиональной работы.</p></div></header>
+    <div class="methodology-intro">
+      <article class="methodology-thesis"><strong>От отдельных кейсов — к системе</strong><p>Кейсы показывают, как ИИ решает отдельные профессиональные задачи. Методология показывает, как сделать эти решения повторяемой частью работы финансового директора.</p></article>
+      <article class="methodology-note"><strong>Следующий уровень зрелости</strong><p>Это не ещё один кейс, а собственная логика работы: от целеполагания и формулировки бизнес-задачи — через данные, модель и проверку выводов — к решению, измеримому результату и накоплению проверенных знаний.</p></article>
+    </div>
+    <div class="pipeline" aria-label="Логика применения ИИ: целеполагание, бизнес-задача, данные, модель, вывод, решение, результат"><div class="pipeline-step">Целеполагание</div><div class="pipeline-step">Бизнес-задача</div><div class="pipeline-step">Данные</div><div class="pipeline-step">Модель</div><div class="pipeline-step">Вывод</div><div class="pipeline-step">Решение</div><div class="pipeline-step">Результат</div></div>
+    <div class="case-grid">
+      <details class="case-card"><summary><span class="case-number">11</span><span><span class="case-title">Система профессиональной работы CFO с ИИ</span><span class="case-brief">Промпты, цепочки промптов, проверка результатов, работа нескольких ИИ и накопление профессиональных знаний.</span><span class="status active">Используется и развивается</span></span><span class="chevron" aria-hidden="true"></span></summary><div class="case-details">
+        <div class="detail"><h3>Задача</h3><p>Перейти от использования ИИ для отдельных запросов к воспроизводимой системе его применения в профессиональной работе финансового директора.</p></div>
+        <div class="detail"><h3>Что сделано с ИИ</h3><p>Разработаны стандарты профессиональных промптов и цепочек промптов, правила работы с недостаточными данными, проверки результатов и использования нескольких моделей.</p><p>Создаётся система знаний финансового директора для накопления проверенных промптов, правил, лучших практик, паттернов и профессиональных знаний.</p></div>
+        <div class="detail"><h3>Результат</h3><p>Сформирована рабочая методология:</p><p class="method-flow">Целеполагание → бизнес-задача → промпт → цепочка промптов → повторяемый рабочий процесс CFO → инструмент / модель → накопление проверенных знаний.</p><p>Отработан принцип независимой проверки критичных результатов второй ИИ-моделью.</p></div>
+        <div class="detail"><h3>Статус</h3><p>Используется и развивается.</p></div>
+        <div class="case-actions"><a class="case-link" href="https://docs.google.com/document/d/1teiBY-6XeQzXqI2kd5FeyDLMSpiJDvXepPEM0eiIQrM/edit" target="_blank" rel="noopener noreferrer">Открыть best practice →</a></div>
+      </div></details>
+    </div>
+  </div>
+</section>
+<section class="principles">
+  <div class="container">
+    <header class="section-heading"><span class="section-number" aria-hidden="true">05</span><div class="section-copy"><p class="section-label">Work principles</p><h2>Как устроена работа с ИИ</h2><p>Повторяющиеся принципы, которые прослеживаются в представленных кейсах.</p></div></header>
+    <div class="principles-grid">
+      <article class="principle-card"><span>01 · Целеполагание</span><h3>От цели бизнеса, а не от технологии</h3><p>Сначала определяется, какой бизнес-результат нужен, для кого он важен и что изменится при достижении цели. Только после этого формулируется задача и определяется роль ИИ в её исследовании, моделировании или автоматизации.</p></article>
+      <article class="principle-card"><span>02 · Проверка</span><h3>QA как часть рабочего процесса</h3><p>Для моделей и критичных выводов используются контрольные проверки, повторное тестирование и независимая перепроверка результатов.</p></article>
+      <article class="principle-card"><span>03 · Система</span><h3>От промпта — к повторяемому workflow</h3><p>Рабочие решения постепенно переводятся из разовых диалогов в цепочки промптов, методологии, инструменты и накопленную систему знаний.</p></article>
+    </div>
+  </div>
+</section>
+<section class="tools-section" id="tools">
+  <div class="container"><div class="tools-panel"><h2>Инструменты и подходы</h2><p>Технологии и методы, использованные в представленных кейсах.</p><div class="tools-grid"><span class="tag">ChatGPT</span><span class="tag">Claude</span><span class="tag">Excel</span><span class="tag">Financial Modeling</span><span class="tag">Market Research</span><span class="tag">Scenario Analysis</span><span class="tag">Prompt Engineering</span><span class="tag">Prompt Chains</span><span class="tag">QA</span><span class="tag">Regression Testing</span><span class="tag">Dashboard Design</span><span class="tag">CRM Requirements</span><span class="tag">Knowledge System</span><span class="tag">Multi-AI Workflow</span><span class="tag">GitHub</span></div></div></div>
 </section>
 </main>
-<footer>
-<div class="container">ИИ-портфолио · Финансовый директор · Практическое применение искусственного интеллекта</div>
-</footer>
+<footer><div class="container footer-row"><span>AI Portfolio · CFO</span><span>Практическое применение искусственного интеллекта в профессиональной работе</span></div></footer>
+<script>
+  document.querySelectorAll('.case-card').forEach(card => {
+    card.addEventListener('toggle', () => {
+      if (!card.open) return;
+      document.querySelectorAll('.case-card[open]').forEach(other => {
+        if (other !== card) other.removeAttribute('open');
+      });
+    });
+  });
+</script>
 </body>
 </html>
